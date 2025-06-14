@@ -28,6 +28,9 @@ logger = logging.getLogger(__name__)
 TINKOFF_TOKEN = os.getenv("TINKOFF_TOKEN")
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 
+if not TINKOFF_TOKEN or not TELEGRAM_TOKEN:
+    raise ValueError("Не заданы токены в переменных окружения!")
+
 # Глобальный кеш облигаций
 bond_cache = []
 bond_details_cache = {}  # Кеш для деталей облигаций
