@@ -24,8 +24,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Конфигурация
-TINKOFF_TOKEN = "t.qZQAlxmuWxV7j6MglXaFl4Pfyd0s9MENH2ZEYq1azGDk_uSYr9RYHtqs-rhz6v8F-1ZPqwRP_2oLulHAXgX80g"
-TELEGRAM_TOKEN = "8001683378:AAFLoT-ENDhf5oT8paDU17lH0srlfBZN0Ec"
+TINKOFF_TOKEN = os.getenv("TINKOFF_TOKEN")
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 
 # Глобальный кеш облигаций
 bond_cache = []
@@ -405,7 +405,13 @@ def main():
     )
     
     app.add_handler(conv_handler)
-    
+    PORT = int(os.environ.get('PORT', 10000))
+    app.run_webhook(
+        listen="0.0.0.0",
+        port=PORT,
+        url_path=TELEGRAM_TOKEN,
+        webhook_url=f"https://your-render-service.onrender.com/{TELEGRAM_TOKEN}"
+    )
     # Запуск бота
     app.run_polling()
 
