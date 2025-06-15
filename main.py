@@ -410,12 +410,7 @@ def main():
     
     app.add_handler(conv_handler)
     PORT = int(os.environ.get('PORT', 10000))
-    app.run_webhook(
-        listen="0.0.0.0",
-        port=PORT,
-        url_path=TELEGRAM_TOKEN,
-        webhook_url=f"https://your-render-service.onrender.com/{TELEGRAM_TOKEN}"
-    )
+    
     # Запуск бота
     app.run_polling()
 
