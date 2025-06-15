@@ -1,4 +1,4 @@
-python-telegram-bot==20.3
+python-telegram-bot[webhooks]==20.3
 tinkoff-investments
 apscheduler
 python-dotenv
